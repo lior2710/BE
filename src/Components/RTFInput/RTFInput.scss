@@ -1,0 +1,38 @@
+.rtf-input {
+  .rtf-input-group {
+    width: 100%;
+    position: relative;
+    .rtf-input-group-addon {
+      position: absolute;
+      top: 1px;
+      right: 2px;
+      z-index: 9;
+      background: #fff;
+      border: none;
+      cursor: pointer;
+      /* padding: 6px; */
+      /* width: 27px; */
+      height: calc(100% - 2px);
+      display: inline-block;
+      vertical-align: middle;
+    }
+  }
+  .rdw-editor-wrapper {
+    min-width: 300px;
+    border: 1px solid #e8e8e8;
+    border-radius: 4px;
+    margin-top: 5px;
+    box-shadow: 0 0 7px lightgrey;
+    .rdw-editor-toolbar {
+      border-top: none;
+      border-left: none;
+      border-right: none;
+    }
+    .rdw-editor-main {
+      height: auto;
+      [data-contents="true"] {
+        margin: 10px;
+      }
+    }
+  }
+}
