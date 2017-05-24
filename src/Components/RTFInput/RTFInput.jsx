@@ -52,6 +52,7 @@ export default class RTFInput extends React.Component {
 
         this._onWindowClickHandler = this.onWindowClick.bind(this);
     }
+
     hideRTFDropdown() {
         this.setState({showDropdown: false});
     }
@@ -71,10 +72,6 @@ export default class RTFInput extends React.Component {
         editorContents = [...editorContents];
 
         this.setState({editorContents});
-
-
-        // var html = this.getHTMLFromEditorState(editorContents[0]);
-
         this.setValue(editorContents[0]);
     };
 
@@ -104,24 +101,40 @@ export default class RTFInput extends React.Component {
     setValue(value) {
         // value = this.fixValue(value);
 
-        var html, editorContent;
+        var editorContent, text, html;
+        var startsWith = (str, prefix) => str.indexOf(prefix) === 0;
+        var endsWith = (str, suffix) => str.match(suffix + '$') === suffix;
+        var htmlToFixedText = (htmlStr) => {
+            var textStr = htmlToText.fromString(htmlStr, {preserveNewlines: true});
+                textStr = this.replaceAll(textStr, '\n\n', '\n');
+                textStr = this.replaceAll(textStr, '\n', '...');
+
+            return textStr;
+        };
 
         if (typeof value === 'string') {
-            html = value;
-            editorContent = this.getEditorStateFromHTML(value);
+            if (startsWith(value, '<') && endsWith(value, '>')) {
+                html = value;
+                text = htmlToFixedText(html);
+            }else{
+                html = '<p>' + value + '</p>';
+                text = value;
+            }
+            if (!endsWith(value, ' ')) {
+                editorContent = this.getEditorStateFromHTML(value);
+            }
         }else{
             html = this.getHTMLFromEditorState(value);
+            text = htmlToFixedText(html);
             editorContent = value;
         }
 
-        html = htmlToText.fromString(html, {preserveNewlines: true});
-        html = this.replaceAll(html, '\n\n', '\n');
-        html = this.replaceAll(html, '\n', '...');
-
-        this.setState({
-            inputValue      : html,
-            editorContents  : [editorContent]
-        });
+        if (editorContent) {
+            this.setState({inputValue: text, editorContents: [editorContent]});
+            (this.props.onChange || (() => {}))(html);
+        }else{
+            this.setState({inputValue: text});
+        }
     }
 
     componentDidMount() {
@@ -133,8 +146,21 @@ export default class RTFInput extends React.Component {
         window.removeEventListener('click', this._onWindowClickHandler);
     }
 
+    componentWillReceiveProps(nextProps) {
+        if (this.props.value !== nextProps.value) {
+            this.setValue(nextProps.value || '');
+        }
+    }
+
     render() {
         const { editorContents } = this.state;
+        var html;
+        var dirAttr = document.querySelector('html').attributes.dir;
+        var isRtl = dirAttr && dirAttr.value === 'rtl';
+
+        if (editorContents[0]) {
+            html = this.getHTMLFromEditorState(editorContents[0]);
+        }
 
         return (
             <div
@@ -149,6 +175,9 @@ export default class RTFInput extends React.Component {
                         placeholder="Type here"
                         value={this.state.inputValue}
                         onChange={(e) => this.onTextInputChange(e)}
+                        onFocus={(e) => (this.props.onFocus || (() => {}))(e, html, this)}
+                        onBlur ={(e) => (this.props.onBlur  || (() => {}))(e, html, this)}
+                        title={htmlToText.fromString(html, {preserveNewlines: true})}
                     />
                     <span
                         className="input-group-addon rtf-input-group-addon"
@@ -162,6 +191,9 @@ export default class RTFInput extends React.Component {
                         toolbar={RTFInput.toolbarDef}
                         editorState={editorContents[0]}
                         onEditorStateChange={(content) => this.onEditorStateChange(content)}
+                        onFocus={(e) => (this.props.onFocus || (() => {}))(e, html, this)}
+                        onBlur ={(e) => (this.props.onBlur  || (() => {}))(e, html, this)}
+                        textAlignment={isRtl ? 'right' : 'left'}
                     />
                 </div>
             </div>

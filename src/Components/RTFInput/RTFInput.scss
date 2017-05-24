@@ -36,3 +36,16 @@
     }
   }
 }
+
+html[dir="rtl"] {
+  .rtf-input {
+    .rtf-input-group-addon {
+      right: auto;
+      left: 2px;
+    }
+    .rdw-dropdown-carettoopen, .rdw-dropdown-carettoclose {
+      left: 10%;
+      right: auto;
+    }
+  }
+}
