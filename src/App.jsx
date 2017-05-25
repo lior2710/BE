@@ -9,11 +9,12 @@ class App extends Component {
     return (
       <div>
         <RTFInput
-            value="Test Value"
-            style={{maxWidth: '400px', margin: '20px'}}
-            className="be-rtf-editor"
-            onBlur ={(e, value, rtfInput) => console.log(e, value, rtfInput)}
-            onFocus={(e, value, rtfInput) => console.log(e, value, rtfInput)}
+          placeholder='Enter here...'
+          value="Test Value"
+          style={{ maxWidth: '400px', margin: '20px' }}
+          className="be-rtf-editor"
+          onBlur={(e, value, rtfInput) => console.log(e, value, rtfInput)}
+          onFocus={(e, value, rtfInput) => console.log(e, value, rtfInput)}
         />
         <DevTools />
       </div>
