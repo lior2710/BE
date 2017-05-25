@@ -14,6 +14,7 @@ class App extends Component {
     return (
       <div>
         <RTFInput
+            placeholder='Enter here...'
             value="Test Value"
             style={{maxWidth: '400px', margin: '20px'}}
             className="be-rtf-editor"
