@@ -7,16 +7,16 @@ import RTFInput from './Components/RTFInput/RTFInput.jsx';
 class App extends Component {
   render() {
     return (
-      <div>
+      <div style={{maxWidth: '400px', margin: '20px'}}>
         <RTFInput
             value="Test Value"
-            style={{maxWidth: '400px', margin: '20px'}}
             className="be-rtf-editor"
             onBlur ={(e, value, rtfInput) => console.log(e, value, rtfInput)}
             onFocus={(e, value, rtfInput) => console.log(e, value, rtfInput)}
             onChange={(value) => console.log(value)}
         />
           <hr />
+          <button className="btn btn-primary">Button</button>
         <DevTools />
       </div>
     );
