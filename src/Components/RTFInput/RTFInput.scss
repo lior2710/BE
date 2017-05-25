@@ -2,6 +2,10 @@
   .rtf-input-group {
     width: 100%;
     position: relative;
+    .rtf-input-text-input {
+      border-color: transparent;
+      border-radius: 0;
+    }
     .rtf-input-group-addon {
       position: absolute;
       top: 1px;
@@ -15,6 +19,7 @@
       height: calc(100% - 2px);
       display: inline-block;
       vertical-align: middle;
+      opacity: 0;
     }
   }
   .rdw-editor-wrapper {
@@ -33,6 +38,14 @@
       [data-contents="true"] {
         margin: 10px;
       }
+    }
+  }
+  &:hover {
+    .rtf-input-text-input {
+      border-color: #d9d9d9;
+    }
+    .rtf-input-group-addon {
+      opacity: 1;
     }
   }
 }
