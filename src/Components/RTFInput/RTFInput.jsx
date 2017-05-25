@@ -93,19 +93,11 @@ export default class RTFInput extends React.Component {
         this.setValue(e.target.value);
     }
 
-    fixValue(value) {
-        if (value.indexOf('<p>') != -1) return;
-
-        return '<p>' + this.replaceAll(value, '\n', '<br>') + '</p>'
-    }
-
     replaceAll(string, find, replace) {
         return string.replace(new RegExp(find, 'g'), replace);
     }
 
     setValue(value) {
-        // value = this.fixValue(value);
-
         var editorContent, text, html;
         var startsWith = (str, prefix) => str.indexOf(prefix) === 0;
         var endsWith = (str, suffix) => str.match(suffix + '$') === suffix;
@@ -159,7 +151,7 @@ export default class RTFInput extends React.Component {
 
     renderDefaultIcon() {
         return (
-            <svg x="0px" y="0px" viewBox="0 0 64 64" enable-background="new 0 0 64 64" width="25px">
+            <svg x="0px" y="0px" viewBox="0 0 64 64" enable-background="new 0 0 64 64" width="20px">
                 <g>
                     <path d="M37.5115013,36.2032013c-0.2187004,0.5077972,0.014698,1.0956993,0.5214996,1.3143997l7.5644989,3.2626991   l-7.5478897,3.1025009c-0.5107117,0.2099991-0.7549095,0.7939987-0.5449104,1.3046989   c0.1591988,0.3867989,0.5321999,0.6202011,0.9248009,0.6202011c0.1268997,0,0.2558975-0.0245018,0.3798981-0.0752029   l9.7441025-4.0048981c0.3721123-0.152401,0.6161995-0.5136986,0.6201096-0.9160004   c0.0038872-0.402401-0.2343102-0.767601-0.6035118-0.9267998l-9.7440987-4.2030983   C38.3171997,35.4628983,37.7303009,35.6953011,37.5115013,36.2032013z" />
                     <path d="M26.4890995,36.2032013c-0.2187996-0.5079002-0.8066998-0.7392998-1.3144875-0.5214996L15.4295006,39.8848   c-0.3691006,0.1591988-0.6073999,0.5243988-0.6035004,0.9267998c0.0039005,0.4023018,0.2480001,0.7635994,0.6201,0.9160004   l9.7451,4.0048981c0.1240005,0.0507011,0.2528992,0.0752029,0.3799,0.0752029c0.3925991,0,0.7665997-0.2334023,0.924799-0.6202011   c0.210001-0.5107002-0.0341988-1.0946999-0.544899-1.3046989l-7.5487995-3.1025009l7.5654106-3.2626991   C26.4743996,37.2989006,26.7077999,36.7109985,26.4890995,36.2032013z" />
@@ -176,6 +168,7 @@ export default class RTFInput extends React.Component {
 
     render() {
         const { editorContents } = this.state;
+
         var html;
         var dirAttr = document.querySelector('html').attributes.dir;
         var isRtl = dirAttr && dirAttr.value === 'rtl';
