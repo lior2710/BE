@@ -22,9 +22,8 @@ class App extends Component {
             onChange={(value) => console.log(value)}
         />
           <hr />
-          <button className="btn btn-primary">Button</button>
         <DevTools />
-        <button onClick={this.toggleDirection} >
+        <button onClick={this.toggleDirection} className="btn btn-primary">
           Toggle Direction
         </button>
       </div>
