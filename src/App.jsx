@@ -5,6 +5,11 @@ import RTFInput from './Components/RTFInput/RTFInput.jsx';
 
 // @observer
 class App extends Component {
+
+  toggleDirection = e => {
+    document.dir = document.dir === 'rtl' ? 'ltr' : 'rtl'
+  }
+
   render() {
     return (
       <div>
@@ -18,6 +23,9 @@ class App extends Component {
         />
           <hr />
         <DevTools />
+        <button onClick={this.toggleDirection} >
+          Toggle Direction
+        </button>
       </div>
     );
   }
