@@ -1,4 +1,5 @@
 .rtf-input {
+  position: relative;
   .rtf-input-group {
     width: 100%;
     position: relative;
@@ -14,7 +15,7 @@
       background: #fff;
       border: none;
       cursor: pointer;
-      padding: 5px;
+      padding: 7px;
       /* width: 27px; */
       height: calc(100% - 2px);
       display: inline-block;
@@ -22,21 +23,25 @@
       opacity: 0;
     }
   }
-  .rdw-editor-wrapper {
-    min-width: 300px;
-    border: 1px solid #e8e8e8;
-    border-radius: 4px;
-    margin-top: 5px;
-    box-shadow: 0 0 7px lightgrey;
-    .rdw-editor-toolbar {
-      border-top: none;
-      border-left: none;
-      border-right: none;
-    }
-    .rdw-editor-main {
-      height: auto;
-      [data-contents="true"] {
-        margin: 10px;
+  .rtf-input-editor {
+    position: absolute;
+    width: 100%;
+    .rdw-editor-wrapper {
+      min-width: 300px;
+      border: 1px solid #e8e8e8;
+      border-radius: 4px;
+      margin-top: 5px;
+      box-shadow: 0 0 7px lightgrey;
+      .rdw-editor-toolbar {
+        border-top: none;
+        border-left: none;
+        border-right: none;
+      }
+      .rdw-editor-main {
+        height: auto;
+        [data-contents="true"] {
+          margin: 10px;
+        }
       }
     }
   }

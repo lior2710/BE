@@ -14,7 +14,9 @@ class App extends Component {
             className="be-rtf-editor"
             onBlur ={(e, value, rtfInput) => console.log(e, value, rtfInput)}
             onFocus={(e, value, rtfInput) => console.log(e, value, rtfInput)}
+            onChange={(value) => console.log(value)}
         />
+          <hr />
         <DevTools />
       </div>
     );
