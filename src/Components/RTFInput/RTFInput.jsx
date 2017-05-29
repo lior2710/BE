@@ -7,7 +7,6 @@ import draftToHtml      from 'draftjs-to-html';
 import htmlToText       from 'html-to-text';
 import isHtml           from 'is-html';
 
-import 'bootstrap/dist/css/bootstrap.min.css';
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import './RTFInput.scss';
 
@@ -183,7 +182,7 @@ export default class RTFInput extends React.Component {
                 onClick={() => this._boxClick = true}
                 style={this.props.style}
             >
-                <div className="input-group rtf-input-group">
+                <div className="rtf-input-group">
                     <input
                         type="text"
                         className="form-control rtf-input-text-input"
@@ -195,7 +194,7 @@ export default class RTFInput extends React.Component {
                         title={htmlToText.fromString(html, { preserveNewlines: true })}
                     />
                     <span
-                        className="input-group-addon rtf-input-group-addon"
+                        className="rtf-input-group-addon"
                         onClick={() => this.setState({ showDropdown: !this.state.showDropdown })}
                     >
                         {this.renderIcon()}

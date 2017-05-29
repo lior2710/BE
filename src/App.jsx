@@ -3,6 +3,8 @@ import { observer } from 'mobx-react';
 import DevTools from 'mobx-react-devtools';
 import RTFInput from './Components/RTFInput/RTFInput.jsx';
 
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 // @observer
 class App extends Component {
 
