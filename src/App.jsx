@@ -6,8 +6,8 @@ import RTFInput from './Components/RTFInput/RTFInput.jsx';
 // @observer
 class App extends Component {
 
-  toggleDirection = e => {
-    document.dir = document.dir === 'rtl' ? 'ltr' : 'rtl'
+  toggleDirection(e) {
+    document.dir = (document.dir === 'rtl' ? 'ltr' : 'rtl');
   }
 
   render() {
@@ -15,7 +15,7 @@ class App extends Component {
       <div style={{maxWidth: '400px', margin: '20px'}}>
         <RTFInput
             placeholder='Enter here...'
-            value="Test Value"
+            value="<b><i>Test Value</i></b>"
             className="be-rtf-editor"
             onBlur ={(e, value, rtfInput) => console.log(e, value, rtfInput)}
             onFocus={(e, value, rtfInput) => console.log(e, value, rtfInput)}

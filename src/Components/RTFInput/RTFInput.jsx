@@ -5,15 +5,27 @@ import {convertToRaw}   from 'draft-js';
 import {stateFromHTML}  from 'draft-js-import-html';
 import draftToHtml      from 'draftjs-to-html';
 import htmlToText       from 'html-to-text';
+import isHtml           from 'is-html';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import './RTFInput.scss';
 
 export default class RTFInput extends React.Component {
+    constructor(props) {
+        super(props);
 
-    static defaultProps = {
-        placeholder: ''
+        this.state = {
+            showDropdown: false,
+            inputValue: '',
+            editorContents: []
+        };
+
+        this._onWindowClickHandler = this.onWindowClick.bind(this);
+    }
+
+    static defaultProps() {
+        return { placeholder: '' };
     }
 
     static get toolbarDef() {
@@ -44,18 +56,6 @@ export default class RTFInput extends React.Component {
                 options: ['left', 'center', 'right', 'justify']
             }
         };
-    }
-
-    constructor(props) {
-        super(props);
-
-        this.state = {
-            showDropdown: false,
-            inputValue: '',
-            editorContents: []
-        };
-
-        this._onWindowClickHandler = this.onWindowClick.bind(this);
     }
 
     hideRTFDropdown() {
@@ -103,14 +103,14 @@ export default class RTFInput extends React.Component {
         var endsWith = (str, suffix) => str.match(suffix + '$') === suffix;
         var htmlToFixedText = (htmlStr) => {
             var textStr = htmlToText.fromString(htmlStr, { preserveNewlines: true });
-            textStr = this.replaceAll(textStr, '\n\n', '\n');
-            textStr = this.replaceAll(textStr, '\n', '...');
+                textStr = this.replaceAll(textStr, '\n\n', '\n');
+                textStr = this.replaceAll(textStr, '\n', '...');
 
             return textStr;
         };
 
         if (typeof value === 'string') {
-            if (startsWith(value, '<') && endsWith(value, '>')) {
+            if (isHtml(value)) {
                 html = value;
                 text = htmlToFixedText(html);
             } else {
