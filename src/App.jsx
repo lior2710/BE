@@ -3,11 +3,13 @@ import { observer } from 'mobx-react';
 import DevTools from 'mobx-react-devtools';
 import RTFInput from './Components/RTFInput/RTFInput.jsx';
 
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 // @observer
 class App extends Component {
 
-  toggleDirection = e => {
-    document.dir = document.dir === 'rtl' ? 'ltr' : 'rtl'
+  toggleDirection(e) {
+    document.dir = (document.dir === 'rtl' ? 'ltr' : 'rtl');
   }
 
   render() {
@@ -15,7 +17,7 @@ class App extends Component {
       <div style={{maxWidth: '400px', margin: '20px'}}>
         <RTFInput
             placeholder='Enter here...'
-            value="Test Value"
+            value="<b><i>Test Value</i></b>"
             className="be-rtf-editor"
             onBlur ={(value, e, rtfInput) => console.log(value, e, rtfInput)}
             onFocus={(value, e, rtfInput) => console.log(value, e, rtfInput)}

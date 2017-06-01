@@ -4,20 +4,30 @@
     width: 100%;
     position: relative;
     .rtf-input-text-input {
-      border-color: transparent;
+      border-color: rgba(0, 0, 0, 0);
       border-radius: 0;
+      display: block;
+      width: 100%;
+      padding: .5rem .75rem;
+      font-size: 1rem;
+      line-height: 1.25;
+      color: #464a4c;
+      background-color: #fff;
+      background-image: none;
+      -webkit-background-clip: padding-box;
+      background-clip: padding-box;
+      border-width: 1px;
     }
     .rtf-input-group-addon {
       position: absolute;
-      top: 1px;
+      top: 2px;
       right: 2px;
       z-index: 9;
       background: #fff;
       border: none;
       cursor: pointer;
       padding: 7px;
-      /* width: 27px; */
-      height: calc(100% - 2px);
+      height: 20px;
       display: inline-block;
       vertical-align: middle;
       opacity: 0;
@@ -28,6 +38,7 @@
     width: 100%;
     background: #fff;
     .rdw-editor-wrapper {
+      overflow: hidden;
       min-width: 300px;
       border: 1px solid #e8e8e8;
       border-radius: 4px;
@@ -48,7 +59,7 @@
   }
   &:hover {
     .rtf-input-text-input {
-      border-color: #d9d9d9;
+      border-color: #f2f2f2;
     }
     .rtf-input-group-addon {
       opacity: 1;
