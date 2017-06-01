@@ -189,8 +189,8 @@ export default class RTFInput extends React.Component {
                         placeholder={this.props.placeholder}
                         value={this.state.inputValue}
                         onChange={(e) => this.onTextInputChange(e)}
-                        onFocus={(e) => (this.props.onFocus || (() => { }))(e, html, this)}
-                        onBlur={(e) => (this.props.onBlur || (() => { }))(e, html, this)}
+                        onFocus={(e) => (this.props.onFocus || (() => { }))(html, e, this)}
+                        onBlur={(e) => (this.props.onBlur || (() => { }))(html, e, this)}
                         title={htmlToText.fromString(html, { preserveNewlines: true })}
                     />
                     <span
@@ -205,8 +205,8 @@ export default class RTFInput extends React.Component {
                         toolbar={RTFInput.toolbarDef}
                         editorState={editorContents[0]}
                         onEditorStateChange={(content) => this.onEditorStateChange(content)}
-                        onFocus={(e) => (this.props.onFocus || (() => { }))(e, html, this)}
-                        onBlur={(e) => (this.props.onBlur || (() => { }))(e, html, this)}
+                        onFocus={(e) => (this.props.onFocus || (() => { }))(html, e, this)}
+                        onBlur={(e) => (this.props.onBlur || (() => { }))(html, e, this)}
                         textAlignment={isRtl ? 'right' : 'left'}
                     />
                 </div>
