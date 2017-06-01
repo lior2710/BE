@@ -17,8 +17,8 @@ class App extends Component {
             placeholder='Enter here...'
             value="Test Value"
             className="be-rtf-editor"
-            onBlur ={(e, value, rtfInput) => console.log(e, value, rtfInput)}
-            onFocus={(e, value, rtfInput) => console.log(e, value, rtfInput)}
+            onBlur ={(value, e, rtfInput) => console.log(value, e, rtfInput)}
+            onFocus={(value, e, rtfInput) => console.log(value, e, rtfInput)}
             onChange={(value) => console.log(value)}
         />
           <hr />
